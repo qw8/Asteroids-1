@@ -15,6 +15,7 @@ function Asteroid(asteroidExplosionSound, pos, r, vel) {
     stroke(173,140,255);
     translate(this.pos.x, this.pos.y);
     beginShape();
+    strokeWeight(2);
     for (var i =0; i < 10; i++) {
       var angle = map(i, 0, this.total, 0, TWO_PI);
       var r = this.r + this.offset[i];
