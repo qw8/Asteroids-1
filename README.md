@@ -8,7 +8,8 @@ This repo is for the Asteroids project from Coding Challenge 45.
 3. Stay tuned for Siraj's tutorial!
 
 ### Play the game!
-* https://codingrainbow.github.io/Asteroids/
+* original - https://codingrainbow.github.io/Asteroids/
+* my version - https://qw8.github.io/Asteroids-1/
 
 ### Info
 
@@ -22,4 +23,4 @@ I'll make a video about how to contribute soon too!
 
 ### Viewer Remixes of the Game
 
-* Add your name and link here!
+* Serge Korzh - https://github.com/qw8/Asteroids-1/
