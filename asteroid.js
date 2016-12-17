@@ -2,10 +2,10 @@ function Asteroid(asteroidExplosionSound, pos, r, vel) {
   this.pos = pos ? pos.copy() : createVector(random(width), random(height));
   this.r = r || random(50, 80);
   this.vel = vel ? vel.copy() : createVector(random(-5, 5), random(-5, 5));
-  this.total = floor(random(5, 15));
+  this.total = floor(random(10, 15));
   this.offset = [];
   for (var i = 0; i < this.total; i++) {
-    this.offset[i] = random(-this.r*0.4, this.r*0.4);
+    this.offset[i] = random(-this.r*0.15, this.r*0.15);
   }
   this.asteroidExplosionSound = asteroidExplosionSound;
 
@@ -16,7 +16,7 @@ function Asteroid(asteroidExplosionSound, pos, r, vel) {
     translate(this.pos.x, this.pos.y);
     beginShape();
     strokeWeight(2);
-    for (var i =0; i < 10; i++) {
+    for (var i =0; i < this.total; i++) {
       var angle = map(i, 0, this.total, 0, TWO_PI);
       var r = this.r + this.offset[i];
       var x = r * cos(angle);

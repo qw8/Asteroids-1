@@ -1,4 +1,4 @@
-function Ship(laserShootSound) {
+function Ship(laserShootSound, engineSound) {
   this.pos = createVector(width/2, height/2);
   this.r = 10;
   this.heading = 0;
@@ -7,7 +7,7 @@ function Ship(laserShootSound) {
   this.isBoosting = false;
   this.lasers = [];
   this.laserShootSound = laserShootSound;
-
+  this.engineSound = engineSound;
 
   this.boosting = function(b) {
     this.isBoosting = b;
@@ -15,7 +15,12 @@ function Ship(laserShootSound) {
 
   this.update = function() {
     if (this.isBoosting) {
+      this.engineSound.setVolume(3);
+      if (!this.engineSound.isPlaying()) this.engineSound.loop();
       this.boost();
+    }
+    else {
+      this.engineSound.stop();
     }
     this.pos.add(this.vel);
     this.vel.mult(0.99);
@@ -46,11 +51,15 @@ function Ship(laserShootSound) {
     push();
     translate(this.pos.x, this.pos.y);
     rotate(this.heading + PI/2);
-    var r = map(this.vel.mag(), 0, 15, 0, 255);
-    var g = map(this.vel.mag(), 0, 15, 0, 106);
-    var b = map(this.vel.mag(), 0, 15, 0, 213);
-    fill(floor(r), floor(g), floor(b));
+    var r = map(this.vel.mag(), 0, 13, 0, 221);
+    var g = map(this.vel.mag(), 0, 13, 0, 47);
+    var b = map(this.vel.mag(), 0, 13, 0, 80);
     stroke(255);
+    if (this.isBoosting) {
+      fill(126, 205, 246);
+      triangle(-this.r*0.5, this.r, this.r*0.5, this.r, 0, 2.5*this.r);
+    }
+    fill(floor(r), floor(g),floor(b));
     triangle(-this.r, this.r, this.r, this.r, 0, -this.r*1.5);
     pop();
   }
@@ -59,8 +68,8 @@ function Ship(laserShootSound) {
     this.rotation = val;
   }
 
-  this.turn = function() {
-    this.heading += this.rotation;
+  this.turn = function(val) {
+    this.heading += val || this.rotation;
   }
 
 
